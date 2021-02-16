@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="headerfiles">
 <meta charset="UTF-8" />
-<title>User Login</title>
+<title>Admin Login</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
@@ -13,21 +13,17 @@
 	<br>
 	<div align="center">
 		<input type="button" value="Forget Password"
-			onclick="window.location.href='/jobseeker/forgetpassword'; return false"
-			class="btn btn-info btn-lg" />
-		<input type="button" value="Sign Up"
-			onclick="window.location.href='/jobseeker/signup'; return false"
+			onclick="window.location.href='/admin/forgetpassword'; return false"
 			class="btn btn-info btn-lg" />
 	</div>
-	
 	<br>
 	<body class="form-bg">
 	<div class="container my-form">
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <form class="form-horizontal"
-					th:action="@{/jobseeker/authenticate}" th:object="${jobseeker}" method="post">
-                <span class="heading">User Login</span>
+					th:action="@{/admin/authenticate}" th:object="${admin}" method="post">
+                <span class="heading">Admin Login</span>
                 <div class="form-group">
                     <input type="text" th:field="*{userName}"
 							class="form-control" id="inputEmail3" placeholder="User Name">
@@ -42,7 +38,7 @@
                     <button type="submit" class="btn btn-default">Login</button>
                 </div>
                 <div>
-                <p th:text="${error}" class="error"></p>
+                <p th:text="${error}"></p>
                 </div>
             </form>
         </div>

@@ -13,58 +13,66 @@
 	<div th:replace="fragments/general.html :: menu"></div>
 	<div align="center">
 		<input type="button" value="Upload File"
-			onclick="window.location.href='/user/uploadfile'; return false"
+			onclick="window.location.href='/jobseeker/uploadfile'; return false"
 			class="btn btn-success btn-lg" /> 
 		<input type="button" value="Jobs Listing"
 			onclick="window.location.href='/job/list'; return false"
 			class="btn btn-info btn-lg" /> 
 		<input type="button" value="Log Out"
-			onclick="window.location.href='/user/logout'; return false"
+			onclick="window.location.href='/jobseeker/logout'; return false"
 			class="btn btn-danger btn-lg" /> 
 	</div>
-	 <form action="#" th:object="${upref}" th:action="@{/user/savesurvey}" method="post">
+	 <form action="#" th:object="${upref}" th:action="@{/jobseeker/savesurvey}" method="post">
   
   
-  <h3>Preferred Roles*(min 1,max 2)</h3>
-  <table>
+  <h2>Preferred Roles*(min 1,max 2)</h2>
+  <table class="center">
   <tr>
-  <td th:each="role:${selectableRoles}">
-  	<div class="preferredRoles">
-  		<input type="checkbox" th:field="*{preferredJobRole}" th:value="${role}">
-  	 <label th:text="${role}"></label>
-  	</div>
+  	<td th:each="role:${selectableRoles}">
+  		<div class="preferredRoles">
+  			<input type="checkbox" th:field="*{preferredJobRole}" th:value="${role}">
+  	 		<h3><label th:text="${role}"></label></h3>
+  		</div>
   	</td>
   </tr>
   </table>
     
   <br><br>
-  <p style="color:red;font-size:20px;" th:text="${error}"></p>
+  <p class="error" th:text="${error}"></p>
   
-  <br><br>
+  <br>
   
-  <h3>Preferred Titles*(min 1,max 2)</h3>
-  <table>
+  <h2>Preferred Titles*(min 1,max 2)</h2>
+  <table class="center">
   <tr>
-  <td th:each="title:${selectableTitles}">
-  	<div class="preferredRoles">
-  		<input type="checkbox" th:field="*{preferredJobTitle}" th:value="${title}">
-        <label th:text="${title}"></label>
-  	</div>
+  	<td th:each="title:${selectableTitles}">
+  		<div class="preferredRoles">
+  			<input type="checkbox" th:field="*{preferredJobTitle}" th:value="${title}">
+        	<h3><label th:text="${title}"></label></h3>
+  		</div>
   	</td>
   </tr>
   </table>
   
-  <br><br>
-  <p style="color:red;font-size:20px;" th:text="${error}"></p>
+  <br>
+  <p class="error" th:text="${error}"></p>
   
-   <h3>Preferred Technologies</h3>
-  <input type="text" th:field="*{preferredTechnologies}" size=100 placeholder="Example: Java, Android, Spring Boot">
-
-  <br><br>
-  <input type="submit" value="Submit">
+  <h2>Preferred Technologies</h2>
+  <table class="center">
+  	<tr>
+  		<td>
+  			<input type="text" th:field="*{preferredTechnologies}" size=100 placeholder="Example: Java, Android, Spring Boot">
+  		</td>
+  	</tr>
+  	<tr></tr>
+  	<tr>
+  		<td>
+  			<input type="submit" value="Submit">
+  		</td>
+  	</tr>
+  	<tr><td>* are compulsory</td></tr>
+  </table>
 </form>
-	
-    <p>* are compulsory</p>
 	<br>
 	<div th:replace="fragments/general.html :: footer"></div>
 </body>

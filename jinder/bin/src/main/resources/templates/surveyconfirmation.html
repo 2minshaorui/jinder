@@ -13,32 +13,40 @@
 	<div th:replace="fragments/general.html :: menu"></div>
 	<div align="center">
 		<input type="button" value="Upload File"
-			onclick="window.location.href='/user/uploadfile'; return false"
+			onclick="window.location.href='/jobseeker/uploadfile'; return false"
 			class="btn btn-success btn-lg" /> 
 		<input type="button" value="Jobs Listing"
 			onclick="window.location.href='/job/list'; return false"
 			class="btn btn-info btn-lg" /> 
 		<input type="button" value="Log Out"
-			onclick="window.location.href='/user/logout'; return false"
+			onclick="window.location.href='/jobseeker/logout'; return false"
 			class="btn btn-danger btn-lg" /> 
 	</div>
 
 
    <br> 
 
-<form action="#" th:action="@{/user/surveyagain}" method="post">
+<form action="#" th:action="@{/jobseeker/surveyagain}" method="post">
 	<div id="wrapper">
-  	<label for="yes_no_radio">You have already taken a survey. Do you want to take a new one?
-  	Please note that the old survey will be replaced by the new one.
-  	</label>
-	<p>
-	<input type="radio" name="yes_no" id="Yes" value="Yes">Yes
-	</p>
-	<p>
-	<input type="radio" name="yes_no" id="No" value="No">No
-	</p>
+	<table class="center">
+		<tr>
+			<th>
+				<label for="yes_no_radio">You have already taken a survey. Do you want to take a new one?
+  				<br>Please note that the old survey will be replaced by the new one.
+  				</label>
+			</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="yes_no" id="Yes" value="Yes">Yes</td>
+		</tr>
+		<tr>
+			<td><input type="radio" name="yes_no" id="No" value="No">No</td>
+		</tr>
+		<tr>
+			<td><input  type="submit" class="btn btn-success" value="Save" /> </td>
+		</tr>
+	</table>
 	</div>
-	<input  type="submit" class="btn btn-success" value="Save" /> 
 </form>
     <br>
 	<div th:replace="fragments/general.html :: footer"></div>

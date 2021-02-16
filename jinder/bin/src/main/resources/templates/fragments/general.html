@@ -21,14 +21,21 @@
  		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<span th:if="${session.usession == null}"><a class="navbar-brand" href="Home" th:href="@{/}">Jinder</a></span>
-					<span th:if="${session.usession != null}"><a class="navbar-brand" href="Jobs Listing" th:href="@{/job/list}">Jinder</a></span>
+					<span th:if="${session.usession != null AND session.asession == null}"><a class="navbar-brand" href="Recommended Jobs" th:href="@{/job/recommendedjobs}">Jinder</a></span>
+					<span th:if="${session.asession != null}"><a class="navbar-brand" href="Jobs Listing" th:href="@{/job/adminlist}">Jinder</a></span>
+					<span th:if="${session.usession == null AND session.asession == null}"><a class="navbar-brand" href="Home" th:href="@{/}">Jinder</a></span>
 				</div>
 				<ul class="nav navbar-nav navbar-right">
-					<li><span th:if="${session.usession != null}" class="glyphicon glyphicon-user"></span><p th:if="${session.usession != null}" th:text=${session.usession.userName}>User name</li>
 					<li>
-						<a th:if="${session.usession == null}" href="Login" th:href="@{/user/login}"><span class="glyphicon glyphicon-log-in"></span> Login</a>
-						<a th:if="${session.usession != null}" href="Logout" th:href="@{/user/logout}"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
+						<span th:if="${session.usession != null}" class="glyphicon glyphicon-user"></span>
+						<span th:if="${session.usession != null}" th:text=${session.usession.userName}>User name </span>
+						<span th:if="${session.asession != null}" class="glyphicon glyphicon-user"></span>
+						<span th:if="${session.asession != null}" th:text=${session.asession.userName}>Admin User name </span></li>
+					<li>
+						<a th:if="${session.usession == null AND session.asession == null}" href="Login" th:href="@{/jobseeker/login}"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+						<a th:if="${session.usession != null}" href="Logout" th:href="@{/jobseeker/logout}"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
+						
+						<a th:if="${session.asession != null}" href="Logout" th:href="@{/admin/logout}"><span class="glyphicon glyphicon-log-out"></span>Log out</a>
 					</li>
 				</ul>
 			</div>
@@ -37,6 +44,7 @@
 	<footer th:fragment="footer">
 		<span th:if="${session.usession == null}"><a href="Home" class="btn btn-success btn-sm" th:href="@{/}">Back to Home</a></span>
 		<span th:if="${session.usession != null}"><a href="Jobs Listing" class="btn btn-info btn-sm" th:href="@{/job/list}">Back to Jobs Listing</a></span>
+		<span th:if="${session.asession != null}"><a href="Jobs Listing" class="btn btn-info btn-sm" th:href="@{/job/adminlist}">Back to Jobs Listing</a></span>
 		<br> 
 		<small>Now is: <b th:text="${execInfo.now.time}"></b></small> 
 		<br> 

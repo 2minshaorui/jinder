@@ -13,59 +13,78 @@
 	<div th:replace="fragments/general.html :: menu"></div>
 	<div align="center">
 		<input type="button" value="Upload File"
-			onclick="window.location.href='/user/uploadfile'; return false"
+			onclick="window.location.href='/jobseeker/uploadfile'; return false"
 			class="btn btn-success btn-lg" /> 
 		<input type="button" value="Jobs Listing"
 			onclick="window.location.href='/job/list'; return false"
 			class="btn btn-info btn-lg" /> 
 		<input type="button" value="Log Out"
-			onclick="window.location.href='/user/logout'; return false"
+			onclick="window.location.href='/jobseeker/logout'; return false"
 			class="btn btn-danger btn-lg" /> 
 	</div>
 	<table width="100%" class="center">
 		<tr align="center">
 			<td width="30%"></td>
-			<td align="center" width="40%"><h1>Edit User</h1></td>
+			<td width="40%"><h1>Edit User</h1></td>
 			<td width="30%"></td>
 		</tr>
 	</table>
-	<form action="#" th:object="${user}" th:action="@{/user/save1}"
-		method="post">
-		<input type="hidden" th:field="*{id}">
-		<fieldset>
-			Full Name: <input type="text" th:field="*{fullName}">
-			<p class="error-list" th:if="${#fields.hasErrors('fullName')}"
-				th:errors="*{fullName}"></p>
-		</fieldset>
-		<fieldset>
-			User Name: <input type="text" th:field="*{userName}">
-			<p class="error-list" th:if="${#fields.hasErrors('userName')}"
-				th:errors="*{userName}"></p>
-			<p th:text="${duplicateUsername}"></p>
-		</fieldset>
-		<fieldset>
-			Password: <input type="password" th:field="*{password}">
-			<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
-		</fieldset>
-		<fieldset>
-			Email Address: <input type="email" th:field="*{emailAddress}">
-			<p th:if="${#fields.hasErrors('emailAddress')}"
-				th:errors="*{emailAddress}"></p>
-			<p th:text="${duplicateEmailAddress}"></p>
-		</fieldset>
-		<fieldset>
-			Address: <input type="text" th:field="*{address}">
-			<p th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
-		</fieldset>
-		<fieldset>
-			PhoneNo: <input type="text" th:field="*{phoneNo}">
-			<p th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}"></p>
-		</fieldset>
-		<fieldset>
-			<input type="submit" class="btn btn-success" value="Save changes" />
-			&nbsp; &nbsp; <input type="reset" class="btn btn-danger"
-				value="Reset" />
-		</fieldset>
+	<form action="#" th:object="${jobseeker}" th:action="@{/jobseeker/save1}" method="post">
+		<table class="center" width="40%">
+			<tr>
+				<td width="10%" align="right">Full Name: </td>
+				<td width="30%">
+					<input type="text" th:field="*{fullName}">
+					<p class="error" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="10%" align="right">User Name: </td>
+				<td width="30%">
+					<input type="text" th:field="*{userName}">
+					<p class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
+					<p th:text="${duplicateUsername}"></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="10%" align="right">Password: </td>
+				<td width="30%">
+					<input type="password" th:field="*{password}">
+					<p class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="10%" align="right">Email Address: </td>
+				<td width="30%">
+					<input type="email" th:field="*{emailAddress}">
+					<p th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></p>
+					<p class="error" th:text="${duplicateEmailAddress}"></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="10%" align="right">Address: </td>
+				<td width="30%">
+					<input type="text" th:field="*{address}">
+					<p class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="10%" align="right">PhoneNo: </td>
+				<td width="30%">
+					<input type="text" th:field="*{phoneNo}" th:placeholder="88018201">
+					<p class="error" th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}"></p>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" class="btn btn-success" value="Save changes" /> &nbsp; &nbsp; 
+					<input type="reset" class="btn btn-danger" value="Reset" />
+				</td>
+			</tr>
+			<tr>
+				<td><input type="hidden" th:field="*{id}"></td>
+			</tr>
+		</table>
 	</form>
 	<br>
 	<div th:replace="fragments/general.html :: footer"></div>

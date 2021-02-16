@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="headerfiles">
 <meta charset="UTF-8" />
-<title>New User</title>
+<title>Edit Admin</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" media="all" type="text/css"
@@ -11,70 +11,76 @@
 <body>
 	<header th:insert="fragments/general.html :: header"> </header>
 	<div th:replace="fragments/general.html :: menu"></div>
+	<div align="center">
+		<input type="button" value="Jobs Listing"
+			onclick="window.location.href='/job/adminlist'; return false"
+			class="btn btn-info btn-lg" /> 
+		<input type="button" value="Log Out"
+			onclick="window.location.href='/admin/logout'; return false"
+			class="btn btn-danger btn-lg" /> 
+
+	</div>
 	<table width="100%" class="center">
 		<tr align="center">
 			<td width="30%"></td>
-			<td width="40%"><h1>Sign Up</h1></td>
+			<td width="40%"><h1>Edit Admin</h1></td>
 			<td width="30%"></td>
 		</tr>
 	</table>
-	<form action="#" th:object="${jobseeker}" th:action="@{/jobseeker/save}" method="post">
-		<table width="40%" class="center">
+	<form action="#" th:object="${admin}" th:action="@{/admin/save1}" method="post">
+		<table class="center" width="40%">
 			<tr>
-				<td width="10%" class="user-details-header">Full Name: </td>
-				<td width="30%" class="user-details">
+				<td width="10%" align="right">Full Name:</td>
+				<td width="30%">
 					<input type="text" th:field="*{fullName}">
 					<p class="error-list" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></p>
 				</td>
 			</tr>
 			<tr>
-				<td width="10%" class="user-details-header">User Name: </td>
-				<td width="30%" class="user-details">
+				<td width="10%" align="right">User Name: </td>
+				<td width="30%">
 					<input type="text" th:field="*{userName}">
-					<p class="error-list" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
-					<p th:text="${duplicateUserName}"></p>
+					<p class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
+					<p th:text="${duplicateUsername}"></p>
 				</td>
 			</tr>
 			<tr>
-				<td width="10%" class="user-details-header">Password: </td>
-				<td width="30%" class="user-details">
+				<td width="10%" align="right">Password: </td>
+				<td width="30%">
 					<input type="password" th:field="*{password}">
 					<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
 				</td>
 			</tr>
 			<tr>
-				<td width="10%" class="user-details-header">Email Address: </td>
-				<td width="30%" class="user-details">
-					<input type="text" th:field="*{emailAddress}">
+				<td width="10%" align="right">Email Address: </td>
+				<td width="30%">
+					<input type="email" th:field="*{emailAddress}">
 					<p th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></p>
 					<p th:text="${duplicateEmailAddress}"></p>
 				</td>
 			</tr>
 			<tr>
-				<td width="10%" class="user-details-header">Address: </td>
-				<td width="30%" class="user-details">
+				<td width="10%" align="right">Address: </td>
+				<td width="30%">
 					<input type="text" th:field="*{address}">
 					<p th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
 				</td>
 			</tr>
 			<tr>
-				<td width="10%" class="user-details-header">PhoneNo: </td>
-				<td width="30%" class="user-details">
+				<td width="10%" align="right">PhoneNo: </td>
+				<td width="30%">
 					<input type="text" th:field="*{phoneNo}">
-			<p th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}"></p>
+					<p th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}"></p>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" class="btn btn-success" value="Save changes" /> &nbsp; &nbsp; 
+					<input type="reset" class="btn btn-danger" value="Reset" />
 				</td>
 			</tr>
 			<tr>
 				<td><input type="hidden" th:field="*{id}"></td>
-			</tr>
-			<tr>
-				<td><input type="hidden" th:field="*{registrationDate}"></td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="submit" class="btn btn-success" value="Save" /> &nbsp; &nbsp; 
-					<input type="reset" class="btn btn-danger" value="Reset" />
-				</td>
 			</tr>
 		</table>
 	</form>

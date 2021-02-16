@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="headerfiles">
 <meta charset="UTF-8" />
-<title>User Details</title>
+<title>Admin Details</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" media="all" type="text/css"
@@ -12,28 +12,22 @@
 	<header th:insert="fragments/general.html :: header"> </header>
 	<div th:replace="fragments/general.html :: menu"></div>
 	<div align="center">
-		<input type="button" value="Upload File"
-			onclick="window.location.href='/jobseeker/uploadfile'; return false"
-			class="btn btn-success btn-lg" /> 
-		<input type="button" value="Take Survey"
-			onclick="window.location.href='/jobseeker/survey'; return false"
-			class="btn btn-primary btn-lg" /> 
 		<input type="button" value="Jobs Listing"
-			onclick="window.location.href='/job/list'; return false"
+			onclick="window.location.href='/job/adminlist'; return false"
 			class="btn btn-info btn-lg" /> 
 		<input type="button" value="Log Out"
-			onclick="window.location.href='/jobseeker/logout'; return false"
+			onclick="window.location.href='/admin/logout'; return false"
 			class="btn btn-danger btn-lg" /> 
+
 	</div>
-	<table class="center" width="100%">
+	<table width="100%" class="center">
 		<tr>
 			<td width="30%"></td>
-			<th width="40%"><h1>User Account</h1></th>
+			<td width="40%"><h1>Admin Account</h1></td>
 			<td width="30%"></td>
 		</tr>
 	</table>
-	<table class="center" th:object="${jobseeker}" width="40%">
-		
+	<table th:object="${admin}" class="center" width="40%">
 		<tr>
 			<td width="10%" align="right">Full Name</td>
 			<td width="30%" th:text="*{fullName}">fullName</td>
@@ -51,13 +45,15 @@
 			<td width="30%" th:text="*{phoneNo}">phoneNo</td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center"><a href="edituser.html" class="btn btn-success"
-				th:href="@{/jobseeker/edit}">Edit User</a></td>
+			<td colspan="2" align="center"><a href="editadmin.html" class="btn btn-success"
+				th:href="@{/admin/edit}">Edit User</a></td>
 		</tr>
 		<tr>
 			<td><input type="hidden" th:field="*{id}"></td>
 		</tr>
 	</table>
+
+
 	<br>
 	<div th:replace="fragments/general.html :: footer"></div>
 </body>

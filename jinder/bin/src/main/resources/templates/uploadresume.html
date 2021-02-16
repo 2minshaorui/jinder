@@ -12,6 +12,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" media="all" type="text/css"
 	th:href="@{/css/style.css}" />
+
 </head>
 <body>
 	<header th:insert="fragments/general.html :: header"> </header>
@@ -21,35 +22,37 @@
 			onclick="window.location.href='/job/list'; return false"
 			class="btn btn-info btn-lg" /> 
 		<input type="button" value="Log Out"
-			onclick="window.location.href='/user/logout'; return false"
+			onclick="window.location.href='/jobseeker/logout'; return false"
 			class="btn btn-danger btn-lg" /> 
 	</div>
 	<table width="100%" class="center">
 		<tr align="center">
 			<td width="30%"></td>
-			<td align="center" width="40%"><h1>Upload Resume</h1></td>
+			<td width="40%"><h1>Upload Resume</h1></td>
 			<td width="30%"></td>
 		</tr>
 	</table>
-	<table th:object="${user}">
+	<table width="40%" class="center" th:object="${jobseeker}">
 		<tr>
-			<td>User Name: </td>
-			<td th:text=${user.userName}>userName</td>
+			<td align="right" width="10%">User Name: </td>
+			<td th:text="*{userName}" width="30%">userName</td>
 		</tr>
 		<tr>
-			<td>Uploaded Resume: </td>
-			<td th:if="${user.resumeUrl != null}">YES</td>
-			<td th:if="${user.resumeUrl == null}">NO</td>
+			<td align="right" width="10%">Resume Uploaded? </td>
+			<td th:if="*{resumeUrl != null}" style="color:green;" width="30%">Yes</td>
+			<td th:if="*{resumeUrl == null}" style="color:red;" width="30%">No</td>
 		</tr>
 	</table>
-		<div id="haha">
-			<form name="Form2" th:action="@{/user/springUpload}" method="post"
-				enctype="multipart/form-data">
-
-				Resume<input type="file" name="file"> <input type="submit"
-					value="Upload" />
-			</form>
-		</div>
+		<form name="Form2" th:action="@{/jobseeker/springUpload}" method="post" enctype="multipart/form-data">
+			<table width="40%" class="center">
+				<tr>
+					<td><input type="file" id="myFile" name="file" required></td>
+				</tr>
+				<tr>
+					<td><input class="buttonupload" type="submit" value="Upload"/></td>
+				</tr>
+			</table>
+		</form>
 		<br>
 		<div th:replace="fragments/general.html :: footer"></div>
 </body>
